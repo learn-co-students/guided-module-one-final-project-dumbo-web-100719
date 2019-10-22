@@ -1,4 +1,4 @@
 class Feeling < ActiveRecord::Base
-    belongs_to :person
+    belongs_to :user
     has_many :events
 end

@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(version: 2019_10_22_165556) do
 
   create_table "feelings", force: :cascade do |t|
     t.integer "event_id"
-    t.integer "person_id"
+    t.integer "user_id"
     t.string "name"
     t.integer "intensity"
   end
 
-  create_table "people", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
   end
 
