@@ -6,7 +6,7 @@ class CommandLineInterface
   end
 
   def get_name
-    
+    prompt = TTY::Prompt.new
     name = prompt.ask("What is your name?")
     User.create(name: name)
   end
