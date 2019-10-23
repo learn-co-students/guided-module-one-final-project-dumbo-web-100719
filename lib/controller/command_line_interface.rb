@@ -1,4 +1,5 @@
 require 'tty-prompt'
+require 'pry'
 class CommandLineInterface
   def welcome
     puts "Welcome to MoodHacker!"
@@ -11,9 +12,14 @@ class CommandLineInterface
     User.create(name: name)
   end
 
-  def display_emoji_choices(name)
+  def display_emoji_choices
     prompt = TTY::Prompt.new
-    mood = prompt.select("How are you feeling today,#{name}")
+    mood = prompt.select("How are you feeling today, #{User.last.name}?") do |menu|
+   menu.choice 'Good'
+   menu.choice 'Not so great'
     mood
+    end
   end
+
 end
+
