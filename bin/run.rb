@@ -6,7 +6,7 @@ new_cli = CommandLineInterface.new
 new_cli.welcome
 new_cli.get_name
 # new_cli.main_menu
-new_cli.get_events_feelings
+# new_cli.get_events_feelings
 # new_cli.create_feeling
 # new_cli.feeling_attributes
 # new_cli.event_categories
