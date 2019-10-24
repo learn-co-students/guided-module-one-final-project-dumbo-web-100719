@@ -10,9 +10,18 @@ class CommandLineInterface
   def get_name
     prompt = TTY::Prompt.new
     @name = prompt.ask("What is your name?")
-    @user = User.create(name: @name)
+    # if User.all.include?(@name)  
+    #   @user = User.id
+    # else
+    # if User.find_by(name: @name)
+    #   puts "already exists"
+    #   @user = User.id
+    # else
+      # puts "doesnt exist"
+      # unless
+    @user = User.create(name: @name)  #User.all.name.include? (@name)
+    # end
   end
-
   def feeling_attributes
     prompt = TTY::Prompt.new
     @mood = prompt.select("How are you feeling today, #{@user.name}?") do |menu|
@@ -62,9 +71,32 @@ event_description
 end
 
 def create_feeling
-  Feeling.create(name: @feeling, intensity: @feeling_intensity, user_id: @user.id, event_id: @event.id)
+  @feelings = Feeling.create(name: @feeling, intensity: @feeling_intensity, user_id: @user.id, event_id: @event.id)
+  @feelings
 end
 
+def display_events
+    prompt = TTY::Prompt.new
+    feeling_array  = Feeling.all.map do |feeling|
+      feeling.user_id == @user.id
+    @user_response= prompt.select("Feelings Menu:") do |menu|
+    menu.choice feeling_array[0].name => 1
+    menu.choice feeling_array[1].name => 2
+    menu.choice feeling_array[2].name => 3  
+    menu.choice feeling_array[3].name => 4
+    end
+    if @user_response == 1 then feeling_array.name
+    end
+  end
+end
+# # def display_feelings
+
+# # end
+
+# def display_logger
+#   display_events
+#   display_feelings
+# end
 # def describe_event
 #   prompt = TTY::Prompt.new
 # event_description = prompt.ask("What happened?")
